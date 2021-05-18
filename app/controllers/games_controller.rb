@@ -3,6 +3,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    json_response(@games)
   end
 
   def create
@@ -15,19 +16,19 @@ class GamesController < ApplicationController
   end
 
   def update
-    @todo.update(todo_params)
+    @game.update(game_params)
     head :no_content
   end
 
   def destroy
-    @todo.destroy
+    @game.destroy
     head :no_content
   end
 
   private
 
   def game_params
-    params.permit(:game, :description, :price, :image)
+    params.permit(:name, :description, :price, :image)
   end
 
   def set_game
