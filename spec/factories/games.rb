@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :game do
-    id 1
+    id { 1 }
     name { Faker::Lorem.word }
-    description { Faker::Lorem.words(10) }
-    image { Faker::Image.imageUrl(50, 50, "games") }
-    price { Faker::Number.number(99) }
+    description { Faker::Lorem.sentence }
+    image { Faker::Lorem.sentence }
+    price { Faker::Number.number(digits: 2) }
   end
 end
