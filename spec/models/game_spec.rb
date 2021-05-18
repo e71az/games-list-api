@@ -1,9 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Game, type: :model do
-  describe 'model tests' do
-    it 'does something' do
-      should have_one(:favourite).dependent(:destroy)
-    end
-  end
+  it {
+    should have_one(:favourite).dependent(:destroy)
+  }
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:price) }
+  it { should validate_presence_of(:image) }
 end
