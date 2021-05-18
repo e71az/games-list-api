@@ -38,7 +38,7 @@ RSpec.describe "Games API", type: :request do
         end
 
         it "returns a not found message" do
-          expect(response.body).to match(/Couldn't find game/)
+          expect(response.body).to match(/Couldn't find Game/)
         end
       end
     end
