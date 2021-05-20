@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Game.destroy_all
+Favourite.destroy_all
 
 Game.create!([{
   name: "League of Legends",
@@ -76,4 +77,15 @@ Game.create!([{
   price: 15,
 }])
 
+Favourite.create!([{
+  game_id: 1,
+},
+                   {
+  game_id: 2,
+},
+                   {
+  game_id: 7,
+}])
+
 p "Created #{Game.count} games"
+p "Created #{Favourite.count} favourites"

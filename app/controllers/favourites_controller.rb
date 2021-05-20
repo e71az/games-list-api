@@ -1,9 +1,9 @@
 class FavouritesController < ApplicationController
-  before_action :set_game
-  before_action :set_game_favourite, only: [:show, :update, :destroy]
+  before_action :set_favourite, only: [:show, :update, :destroy]
 
   def index
-    json_response(@game.favourites)
+    @favourites = Favourite.all
+    json_response(@favourites)
   end
 
   def show
@@ -11,8 +11,8 @@ class FavouritesController < ApplicationController
   end
 
   def create
-    @game.create_favourite!(favourite_params)
-    json_response(@game, :created)
+    @favourite = Favourite.create!(favourite_params)
+    json_response(@favourite, :created)
   end
 
   def update
@@ -31,11 +31,7 @@ class FavouritesController < ApplicationController
     params.permit(:game_id)
   end
 
-  def set_game
-    @game = Game.find(params[:game_id])
-  end
-
-  def set_game_favourite
-    @favourite = @game.favourite if @game
+  def set_favourite
+    @favourite = Favourite.find(params[:game_id])
   end
 end
