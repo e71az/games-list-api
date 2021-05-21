@@ -84,6 +84,9 @@ GEM
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    goldiloader (4.1.0)
+      activerecord (>= 5.2, < 7.1)
+      activesupport (>= 5.2, < 7.1)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     listen (3.5.1)
@@ -107,6 +110,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3.2)
@@ -139,6 +144,10 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -179,14 +188,18 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+  bundler
   byebug
   database_cleaner
   factory_bot_rails (~> 4.0)
   faker
+  goldiloader
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-cors
   rails (~> 6.1.3, >= 6.1.3.2)
+  rspec
   rspec-rails (~> 4.0)
   shoulda-matchers (~> 3.1)
   spring
