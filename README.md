@@ -30,7 +30,7 @@
 ## Table of Contents
 
 - [About the Project](#about-the-project)
-  - [Mobile View](#mobile-view)
+  - [Data View](#data-view)
   - [Built With](#built-with)
   - [Rules](#rules)
   - [Usage](#usage)
@@ -45,7 +45,7 @@
 
 This is the **games-list-api** final project where users are able to retrieve basic information about certain games like name, description, image and price. This API will be used by me to create a standalone React & Redux app to withdraw the information to.
 
-### Mobile view
+### Data View
 
 ![screenshot](./app/assets/images/mobile.png)
 
@@ -55,7 +55,7 @@ This is the **games-list-api** final project where users are able to retrieve ba
 
 [Favourites List](https://games-list-api.herokuapp.com/favourites)
 
-## Usage instructions
+## Usage Instructions
 
 - To get the games list, use this as the API link: https://games-list-api.herokuapp.com/games
 
