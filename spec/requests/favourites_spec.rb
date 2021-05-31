@@ -1,28 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Favourites', type: :request do
-  let!(:games) { create_list(:game, 10) }
+RSpec.describe "Favourites", type: :request do
+  let!(:favourites) { create_list(:favourite, 3) }
 
-  let!(:favourites) do
-    Favourite.create!([{
-                        game_id: games.first.id
+  describe "GET /favourites" do
+    before { get "/favourites" }
 
-                      },
-                       {
-                         game_id: games.last.id
-                       }])
-  end
-
-  describe 'GET /favourites' do
-    before { get '/favourites' }
-
-    it 'returns favourites' do
+    it "returns favourites" do
       expect(json).not_to be_empty
-      expect(json.size).to eq(2)
+      expect(json.size).to eq(3)
     end
 
-    it 'returns status code 200' do
-      puts json
+    it "returns status code 200" do
       expect(response).to have_http_status(200)
     end
   end
