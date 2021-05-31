@@ -78,10 +78,10 @@ Game.create!([{
 }])
 
 Favourite.create!([{
-  game_id: 1,
+  game_id: 6,
 },
                    {
-  game_id: 2,
+  game_id: 9,
 },
                    {
   game_id: 7,
