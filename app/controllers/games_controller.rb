@@ -28,10 +28,11 @@ class GamesController < ApplicationController
   def favourite
     type = params[:type]
     user = User.find_by(name: params[:name])
-    if type == "favourite"
+    case type
+    when 'favourite'
       user.favourites << @game
       json_response(user.favourites)
-    elsif type == "unfavourite"
+    when 'unfavourite'
       user.favourites.delete(@game)
       json_response(user.favourites)
     else
