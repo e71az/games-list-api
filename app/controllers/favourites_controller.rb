@@ -2,7 +2,7 @@ class FavouritesController < ApplicationController
   before_action :set_favourite, only: %i[show update destroy]
 
   def index
-    @favourites = User.find_by(name: params[:name]).favourites
+    @favourites = User.find_by!(name: params[:name]).favourites
     json_response(@favourites)
   end
 
