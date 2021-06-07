@@ -11,8 +11,20 @@ class FavouritesController < ApplicationController
   end
 
   def create
-    @favourite = Favourite.create!(favourite_params)
-    json_response(@favourite, :created)
+    @type = params[:type]
+    @user = User.find_by(name: params[:name])
+    @game = Game.find(params[:game_id])
+
+    case @type
+    when "favourite"
+      @user.favourites << @game
+      json_response(@user.favourites)
+    when "unfavourite"
+      @user.favourites.delete(@game)
+      json_response(@user.favourites)
+    else
+      json_response(:forbidden)
+    end
   end
 
   def update
@@ -28,7 +40,7 @@ class FavouritesController < ApplicationController
   private
 
   def favourite_params
-    params.permit(:game_id)
+    params.permit(:type, :name, :game_id)
   end
 
   def set_favourite

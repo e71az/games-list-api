@@ -25,21 +25,6 @@ class GamesController < ApplicationController
     head :no_content
   end
 
-  def favourite
-    type = params[:type]
-    user = User.find_by(name: params[:name])
-    case type
-    when 'favourite'
-      user.favourites << @game
-      json_response(user.favourites)
-    when 'unfavourite'
-      user.favourites.delete(@game)
-      json_response(user.favourites)
-    else
-      json_response(:forbidden)
-    end
-  end
-
   private
 
   def game_params

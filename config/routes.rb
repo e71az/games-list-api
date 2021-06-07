@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     put :favourite, on: :member
   end
   resources :users, only: [:new, :create]
-  resources :favourites, only: [:index]
+  resources :favourites, only: [:index, :create]
   post "login", to: "sessions#create"
 end
