@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     put :favourite, on: :member
   end
   resources :users, only: [:new, :create]
-  resources :favourites, only: [:index, :create, :destroy]
+  resources :favourites, only: [:index, :create]
+  delete "/favourites/:id" => "favourites#destroy"
 end
