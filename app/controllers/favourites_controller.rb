@@ -5,14 +5,12 @@ class FavouritesController < ApplicationController
   end
 
   def create
-    begin
-      user = User.find_by(user_name_param)
-      game = Game.find(params[:game_id])
-      user.favourites << game
-      json_response(user.favourites, :ok)
-    rescue => exception
-      json_response(exception, :forbidden)
-    end
+    user = User.find_by(user_name_param)
+    game = Game.find(params[:game_id])
+    user.favourites << game
+    json_response(user.favourites, :ok)
+  rescue StandardError => e
+    json_response(e, :forbidden)
   end
 
   def destroy
