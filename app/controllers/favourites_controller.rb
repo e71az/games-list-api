@@ -1,40 +1,29 @@
 class FavouritesController < ApplicationController
-  before_action :set_favourite, only: %i[show update destroy]
-
   def index
-    @favourites = User.find_by!(name: params[:name]).favourites
+    @favourites = User.find_by!(user_name_param).favourites
     json_response(@favourites)
   end
 
-  def show
-    json_response(@favourite)
-  end
-
   def create
-    @type = params[:type]
-    @user = User.find_by(name: params[:name])
-    @game = Game.find(params[:game_id])
-
-    case @type
-    when 'favourite'
-      @user.favourites << @game
-      json_response(@user.favourites)
-    when 'unfavourite'
-      @user.favourites.delete(@game)
-      json_response(@user.favourites)
-    else
-      json_response(:forbidden)
+    begin
+      user = User.find_by(user_name_param)
+      game = Game.find(params[:game_id])
+      user.favourites << game
+      json_response(user.favourites, :ok)
+    rescue => exception
+      json_response(exception, :forbidden)
     end
   end
 
-  def update
-    @favourite.update(favourite_params)
-    head :no_content
-  end
-
   def destroy
-    @favourite.destroy
-    head :no_content
+    user = User.find_by(user_name_param)
+    game = Game.find(params[:game_id])
+
+    if user.favourites.delete(game)
+      json_response(user.favourites)
+    else
+      json_response(:forbidden)
+    end
   end
 
   private
@@ -43,7 +32,11 @@ class FavouritesController < ApplicationController
     params.permit(:type, :name, :game_id)
   end
 
-  def set_favourite
-    @favourite = Favourite.find(params[:game_id])
+  def user_name_param
+    params.permit(:name)
+  end
+
+  def favourite_game_id_param
+    params.permit(:game_id)
   end
 end
